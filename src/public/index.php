@@ -3,11 +3,13 @@ use KanbanBoard\Authentication;
 use KanbanBoard\GithubActual;
 use KanbanBoard\Utilities;
 
+include '/laragon/www/kanban/env.php';
 require '../classes/KanbanBoard/Github.php';
 require '../classes/Utilities.php';
 require '../classes/KanbanBoard/Authentication.php';
 
-$repositories = explode('|', Utilities::env('GH_REPOSITORIES'));
+// $repositories = explode('|', Utilities::env('GH_REPOSITORIES'));
+$repositories = Utilities::env('GH_REPOSITORIES');
 $authentication = new \KanbanBoard\Login();
 $token = $authentication->login();
 $github = new GithubClient($token, Utilities::env('GH_ACCOUNT'));
