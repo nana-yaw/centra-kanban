@@ -3,7 +3,6 @@ use KanbanBoard\Authentication;
 use KanbanBoard\GithubActual;
 use KanbanBoard\Utilities;
 
-include '/laragon/www/kanban/env.php';
 require '../classes/KanbanBoard/Github.php';
 require '../classes/Utilities.php';
 require '../classes/KanbanBoard/Authentication.php';
