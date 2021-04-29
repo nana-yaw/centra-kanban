@@ -9,9 +9,9 @@ require '../classes/KanbanBoard/Authentication.php';
 
 $variables = [
 	'GH_CLIENT_ID' => 'deebdfd727072c1e2b9e',
-	'GH_CLIENT_SECRET' => 'b0bb9190af19a8602efdcdd13050025eea1a7f1c',
+	'GH_CLIENT_SECRET' => 'e3525b049b733db55efd2b88c1e89bb96bb11ddb',
 	'GH_ACCOUNT' => 'nana-yaw',
-	'GH_REPOSITORIES' => 'imageShrink|centra-kanban',
+	'GH_REPOSITORIES' => 'imageShrink',
 ];
 
 foreach ($variables as $key => $value) {
