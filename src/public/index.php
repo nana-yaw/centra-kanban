@@ -6,10 +6,14 @@ require '../classes/KanbanBoard/Authentication.php';
 
 try {
 	require '../../vendor/autoload.php';
-	$repositories = explode('|', GH_REPOSITORIES);
+	
+	$reposource = (GH_REPOSITORIES != NULL && GH_REPOSITORIES != '') ? GH_REPOSITORIES : getenv('GH_REPOSITORIES');
+	$repoacc = (GH_ACCOUNT != NULL && GH_ACCOUNT != '') ? GH_ACCOUNT : getenv('GH_ACCOUNT');
+
+	$repositories = explode('|', $reposource);
 	$authentication = new \KanbanBoard\Login();
 	$token = $authentication->login();
-	$github = new GithubClient($token, GH_ACCOUNT);
+	$github = new GithubClient($token, $repoacc);
 	$board = new \KanbanBoard\Application($github, $repositories, array('all'));
 	$data = $board->board();
 
