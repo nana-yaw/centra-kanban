@@ -13,7 +13,7 @@ try {
 	$env = (new DotEnv('../../.env'))->safeLoad();
 
 	if ($env == []) {
-		continue;
+		
 	}
 
 	$reposource = Utilities::env('GH_REPOSITORIES');
