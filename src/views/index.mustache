@@ -27,6 +27,9 @@
             font-family:'Glyphicons Halflings';
             content:"\e073";
         }
+        .mt-2{
+            margin-top:2rem;
+        }
     </style>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -37,6 +40,11 @@
   </head>
   <body>
   <div class="container-fluid">
+    <div class="jumbotron mt-2">
+        <h1>Centra Kanban Board</h1>
+        <p>This is a simple, read-only, Kanban-board for Github issues.</p>
+        <p><a class="btn btn-primary btn-lg" href="https://github.com/nana-yaw/centrakanban" target="_blank" role="button">Learn more</a></p>
+    </div>
     {{#milestones}}
         <div class="panel panel-primary">
             <div class="panel-heading">

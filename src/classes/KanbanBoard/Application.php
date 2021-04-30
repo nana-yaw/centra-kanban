@@ -20,6 +20,7 @@ class Application {
 	public function board()
 	{
 		$ms = array();
+		$milestones = array();
 		foreach ($this->repositories as $repository)
 		{
 			foreach ($this->github->milestones($repository) as $data)
@@ -37,11 +38,11 @@ class Application {
 			{
 				$milestones[] = array(
 					'milestone' => $name,
-					'url' => $data['html_url'],
+					'url' => $data['html_url'] = isset($issues['html_url']) ? $issues['html_url'] : '',
 					'progress' => $percent,
-					'queued' => $issues['queued'],
-					'active' => $issues['active'],
-					'completed' => $issues['completed']
+					'queued' => $issues['queued'] = isset($issues['queued']) ? $issues['queued'] : '',
+					'active' => $issues['active'] = isset($issues['active']) ? $issues['active'] : '',
+					'completed' => $issues['completed'] = isset($issues['completed']) ? $issues['completed'] : ''
 				);
 			}
 		}
@@ -68,6 +69,9 @@ class Application {
 				'closed'			=> $ii['closed_at']
 			);
 		}
+
+		$issues['active'] = isset($issues['active']) ? $issues['active'] : array();
+
 		usort($issues['active'], function ($a, $b) {
 			return count($a['paused']) - count($b['paused']) === 0 ? strcmp($a['title'], $b['title']) : count($a['paused']) - count($b['paused']);
 		});

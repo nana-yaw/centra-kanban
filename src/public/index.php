@@ -9,9 +9,9 @@ require '../classes/KanbanBoard/Authentication.php';
 
 $variables = [
 	'GH_CLIENT_ID' => 'deebdfd727072c1e2b9e',
-	'GH_CLIENT_SECRET' => 'e3525b049b733db55efd2b88c1e89bb96bb11ddb',
+	'GH_CLIENT_SECRET' => '624c19fb7bce91d71628b061647f8b6c183646f5',
 	'GH_ACCOUNT' => 'nana-yaw',
-	'GH_REPOSITORIES' => 'imageShrink',
+	'GH_REPOSITORIES' => 'imageShrink|centrakanban',
 ];
 
 foreach ($variables as $key => $value) {
@@ -19,13 +19,32 @@ foreach ($variables as $key => $value) {
 	putenv("$key=$value");
 }
 
-$repositories = explode('|', Utilities::env('GH_REPOSITORIES'));
-$authentication = new \KanbanBoard\Login();
-$token = $authentication->login();
-$github = new GithubClient($token, Utilities::env('GH_ACCOUNT'));
-$board = new \KanbanBoard\Application($github, $repositories, array('waiting-for-feedback'));
-$data = $board->board();
-$m = new Mustache_Engine(array(
-	'loader' => new Mustache_Loader_FilesystemLoader('../views'),
-));
-echo $m->render('index', array('milestones' => $data));
+try {
+	$repositories = explode('|', Utilities::env('GH_REPOSITORIES'));
+	$authentication = new \KanbanBoard\Login();
+	$token = $authentication->login();
+	$github = new GithubClient($token, Utilities::env('GH_ACCOUNT'));
+	$board = new \KanbanBoard\Application($github, $repositories, array('all'));
+	$data = $board->board();
+
+	if ($data != NULL) {
+
+			$m = new Mustache_Engine(array(
+				'loader' => new Mustache_Loader_FilesystemLoader('../views'),
+			));
+		
+			echo $m->render('index', array('milestones' => $data));
+		
+			return;
+
+	}
+
+	echo '<pre><strong>Warning!</strong> Server did not return data on repo(s).</pre>';
+
+} catch (\Github\Exception\RuntimeException $e) {
+
+	echo 'One of the repo returns empty! Please check the value GH_REPOSITORIES.';
+
+}
+
+

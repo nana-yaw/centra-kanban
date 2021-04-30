@@ -6,6 +6,7 @@ class Login {
 
 	private $client_id = NULL;
 	private $client_secret = NULL;
+	protected $state = NULL;
 
 	public function __construct()
 	{
@@ -47,7 +48,8 @@ class Login {
 		$url = 'Location: https://github.com/login/oauth/authorize';
 		$url .= '?client_id=' . $this->client_id;
 		$url .= '&scope=repo';
-		$url .= '&state=LKHYgbn776tgubkjhk';
+		// $url .= '&state=LKHYgbn776tgubkjhk';
+		$url .= '&state='.$this->setState().'';
 		header($url);
 		exit();
 	}
@@ -57,7 +59,8 @@ class Login {
 		$url = 'https://github.com/login/oauth/access_token';
 		$data = array(
 			'code' => $code,
-			'state' => 'LKHYgbn776tgubkjhk',
+			// 'state' => 'LKHYgbn776tgubkjhk',
+			'state' => ''.$this->getState().'',
 			'client_id' => $this->client_id,
 			'client_secret' => $this->client_secret);
 		$options = array(
@@ -74,5 +77,17 @@ class Login {
 		$result = explode('=', explode('&', $result)[0]);
 		array_shift($result);
 		return array_shift($result);
+	}
+
+	private function setState(){
+		$this->state = substr(md5(microtime()), 0, 18);
+		return $this->state;
+	}
+
+	private function getState(){
+		if ($this->state == NULL) {
+			$this->setState();
+		}
+		return $this->state;
 	}
 }
