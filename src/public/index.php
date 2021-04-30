@@ -10,7 +10,11 @@ require '../classes/KanbanBoard/Authentication.php';
 try {
 	require '../../vendor/autoload.php';
 
-	(new DotEnv('../../.env'))->safeLoad();
+	$env = (new DotEnv('../../.env'))->safeLoad();
+
+	if ($env == []) {
+		continue;
+	}
 
 	$reposource = Utilities::env('GH_REPOSITORIES');
 	$repoacc = Utilities::env('GH_ACCOUNT');
