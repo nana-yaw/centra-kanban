@@ -10,8 +10,7 @@
 		"vierbergenlars/php-semver": "^3.0",
 		"michelf/php-markdown": "^1.6",
 		"phpunit/phpunit": "^8.0",
-		"knplabs/github-api": "^3.0",
-		"guzzlehttp/guzzle": "^7.0.1",
+		"knplabs/github-api": "^1.5",
 		"http-interop/http-factory-guzzle": "^1.0"
 	},
 	"minimum-stability": "dev"
