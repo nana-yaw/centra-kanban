@@ -27,7 +27,7 @@ try {
 	$authentication = new \KanbanBoard\Login();
 	$token = $authentication->login();
 	$github = new GithubClient($token, $repoacc);
-	$board = new \KanbanBoard\Application($github, $repositories, array('all'));
+	$board = new \KanbanBoard\Application($github, $repositories, array('waiting-for-feedback'));
 	$data = $board->board();
 
 	if ($data != NULL) {
