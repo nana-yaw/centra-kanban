@@ -7,10 +7,10 @@ require '../classes/KanbanBoard/Authentication.php';
 try {
 	require '../../vendor/autoload.php';
 
-	$reposource = (GH_REPOSITORIES != NULL && GH_REPOSITORIES != '') ? GH_REPOSITORIES : getenv('GH_REPOSITORIES');
-	$repoacc = (GH_ACCOUNT != NULL && GH_ACCOUNT != '') ? GH_ACCOUNT : getenv('GH_ACCOUNT');
+	$reposource = ((GH_REPOSITORIES != NULL) && (GH_REPOSITORIES != '')) ? GH_REPOSITORIES : getenv('GH_REPOSITORIES');
+	$repoacc = ((GH_ACCOUNT != NULL) && (GH_ACCOUNT != '')) ? GH_ACCOUNT : getenv('GH_ACCOUNT');
 
-	die(var_dump($reposource));
+	var_dump($reposource);
 
 	$repositories = explode('|', $reposource);
 	$authentication = new \KanbanBoard\Login();
