@@ -48,7 +48,6 @@ class Login {
 		$url = 'Location: https://github.com/login/oauth/authorize';
 		$url .= '?client_id=' . $this->client_id;
 		$url .= '&scope=repo';
-		// $url .= '&state=LKHYgbn776tgubkjhk';
 		$url .= '&state='.$this->setState().'';
 		header($url);
 		exit();
@@ -59,7 +58,6 @@ class Login {
 		$url = 'https://github.com/login/oauth/access_token';
 		$data = array(
 			'code' => $code,
-			// 'state' => 'LKHYgbn776tgubkjhk',
 			'state' => ''.$this->getState().'',
 			'client_id' => $this->client_id,
 			'client_secret' => $this->client_secret);

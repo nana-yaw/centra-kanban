@@ -43,7 +43,7 @@
     <div class="jumbotron mt-2">
         <h1>Centra Kanban Board</h1>
         <p>This is a simple, read-only, Kanban-board for Github issues.</p>
-        <p><a class="btn btn-primary btn-lg" href="https://github.com/nana-yaw/centrakanban" target="_blank" role="button">Learn more</a></p>
+        <p><a class="btn btn-primary btn-lg" href="{{url}}" target="_blank" role="button">Learn more</a></p>
     </div>
     {{#milestones}}
         <div class="panel panel-primary">
@@ -61,7 +61,7 @@
                         <div class="list-group">
 
                             {{#queued}}
-                                <a href="{{url}}" class="list-group-item list-group-item-danger">
+                                <a href="{{url}}" target="_blank" class="list-group-item list-group-item-danger">
                                     <span class="glyphicon glyphicon-question-sign"></span>
                                     {{title}}
                                     <span style="float: right" class="glyphicon glyphicon-new-window"/></a>
@@ -71,7 +71,7 @@
                     <div class="col-sm-4">
                         <div class="list-group">
                             {{#active}}
-                                <a href="{{url}}" class="list-group-item {{#paused}}list-group-item-warning{{/paused}} {{^paused}}list-group-item-info{{/paused}}">
+                                <a href="{{url}}" target="_blank" class="list-group-item {{#paused}}list-group-item-warning{{/paused}} {{^paused}}list-group-item-info{{/paused}}">
                                     <img class="img-rounded" src="{{assignee}}" width="16" height="16" border="0"/>&nbsp;
                                     {{#paused}}<em><small>{{/paused}}{{title}}{{#paused}}</small></em>{{/paused}}
                                     <span id="state" class="glyphicon"></span>
@@ -83,7 +83,7 @@
                     <div class="col-sm-4">
                         <div class="list-group">
                             {{#completed}}
-                                <a href="{{url}}" class="list-group-item list-group-item-success">
+                                <a href="{{url}}" target="_blank" class="list-group-item list-group-item-success">
                                     <img class="img-rounded" src="{{assignee}}" width="16" height="16" border="0"/>&nbsp;
                                     <s>{{title}}</s>
                                     <span style="float: right" class="glyphicon glyphicon-new-window"/>

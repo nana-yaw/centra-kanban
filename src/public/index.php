@@ -1,23 +1,22 @@
 <?php
-use KanbanBoard\Authentication;
-use KanbanBoard\GithubActual;
+
 use KanbanBoard\Utilities;
 
 require '../classes/KanbanBoard/Github.php';
 require '../classes/Utilities.php';
 require '../classes/KanbanBoard/Authentication.php';
 
-$variables = [
-	'GH_CLIENT_ID' => 'deebdfd727072c1e2b9e',
-	'GH_CLIENT_SECRET' => '624c19fb7bce91d71628b061647f8b6c183646f5',
-	'GH_ACCOUNT' => 'nana-yaw',
-	'GH_REPOSITORIES' => 'imageShrink|centrakanban',
-];
+// $variables = [
+// 	'GH_CLIENT_ID' => 'deebdfd727072c1e2b9e',
+// 	'GH_CLIENT_SECRET' => '624c19fb7bce91d71628b061647f8b6c183646f5',
+// 	'GH_ACCOUNT' => 'nana-yaw',
+// 	'GH_REPOSITORIES' => 'imageShrink|centrakanban',
+// ];
 
-foreach ($variables as $key => $value) {
+// foreach ($variables as $key => $value) {
 
-	putenv("$key=$value");
-}
+// 	putenv("$key=$value");
+// }
 
 try {
 	$repositories = explode('|', Utilities::env('GH_REPOSITORIES'));
@@ -43,7 +42,7 @@ try {
 
 } catch (\Github\Exception\RuntimeException $e) {
 
-	echo 'One of the repo returns empty! Please check the value GH_REPOSITORIES.';
+	echo 'One of the repo returns empty! Please check the spelling of the value of GH_REPOSITORIES.';
 
 }
 
