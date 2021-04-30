@@ -8,9 +8,11 @@
 		"php": ">=7.2",
 		"mustache/mustache": "^2.9",
 		"vierbergenlars/php-semver": "^3.0",
-		"knplabs/github-api": "^1.5",
 		"michelf/php-markdown": "^1.6",
-		"phpunit/phpunit": "^8.0"
+		"phpunit/phpunit": "^8.0",
+		"knplabs/github-api": "^3.0",
+		"guzzlehttp/guzzle": "^7.0.1",
+		"http-interop/http-factory-guzzle": "^1.0"
 	},
 	"minimum-stability": "dev"
 }
