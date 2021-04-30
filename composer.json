@@ -5,7 +5,7 @@
 		]
 	},
 	"require": {
-		"php": ">=7.2",
+		"php": "^7.2",
 		"mustache/mustache": "^2.9",
 		"vierbergenlars/php-semver": "^3.0",
 		"michelf/php-markdown": "^1.6",
