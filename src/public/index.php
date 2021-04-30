@@ -16,8 +16,8 @@ try {
 
 	} catch (\InvalidArgumentException $th) {
 
-		echo 'The .env file was not found.';
-		
+		// echo 'The .env file was not found.';
+
 	}
 
 	$reposource = Utilities::env('GH_REPOSITORIES');
