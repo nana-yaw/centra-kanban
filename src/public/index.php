@@ -10,9 +10,13 @@ require '../classes/KanbanBoard/Authentication.php';
 try {
 	require '../../vendor/autoload.php';
 
-	$env = (new DotEnv('../../.env'))->safeLoad();
+	try {
 
-	if ($env == []) {
+		(new DotEnv('../../.env'))->safeLoad();
+
+	} catch (\InvalidArgumentException $th) {
+
+		echo 'The .env file was not found.';
 		
 	}
 
