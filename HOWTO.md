@@ -17,7 +17,7 @@ Below is the definition for your environment variable...
 * `GH_REPOSITORIES` are names of your GitHub repos separated by a `|` character.
 
 From your favorite cli, `cd` into the root of this project and run this command `php -S localhost:8000 -tsrc/public`.
-In your browser visit [localhost:8000](localhost:8000).
+In your browser visit this url [localhost:8000](http://localhost:8000).
 
 
 ## Demo Application
