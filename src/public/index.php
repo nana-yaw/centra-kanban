@@ -1,5 +1,8 @@
 <?php
 
+use KanbanBoard\Utilities;
+use KanbanBoard\DotEnv;
+
 require '../classes/KanbanBoard/Github.php';
 require '../classes/Utilities.php';
 require '../classes/KanbanBoard/Authentication.php';
@@ -7,10 +10,10 @@ require '../classes/KanbanBoard/Authentication.php';
 try {
 	require '../../vendor/autoload.php';
 
-	$reposource = ((GH_REPOSITORIES != NULL) && (GH_REPOSITORIES != '')) ? GH_REPOSITORIES : getenv('GH_REPOSITORIES');
-	$repoacc = ((GH_ACCOUNT != NULL) && (GH_ACCOUNT != '')) ? GH_ACCOUNT : getenv('GH_ACCOUNT');
+	(new DotEnv('../../.env'))->safeLoad();
 
-	var_dump($reposource);
+	$reposource = Utilities::env('GH_REPOSITORIES');
+	$repoacc = Utilities::env('GH_ACCOUNT');
 
 	$repositories = explode('|', $reposource);
 	$authentication = new \KanbanBoard\Login();

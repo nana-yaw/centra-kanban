@@ -4,9 +4,11 @@ namespace KanbanBoard;
 class Utilities
 {
 	private function __construct() {
+
 	}
 
 	public static function env($name, $default = NULL) {
+		
 		$value = getenv($name);
 		if($default !== NULL) {
 			if(!empty($value))

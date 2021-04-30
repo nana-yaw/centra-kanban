@@ -2,9 +2,6 @@
 	"autoload": {
 		"classmap": [
 			"src/classes"
-		],
-		"files": [
-			"env.php"
 		]
 	},
 	"require": {

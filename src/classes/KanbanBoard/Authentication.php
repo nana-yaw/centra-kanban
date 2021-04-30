@@ -10,8 +10,8 @@ class Login {
 
 	public function __construct()
 	{
-		$this->client_id = ((GH_CLIENT_ID != NULL) && (GH_CLIENT_ID != '')) ? GH_CLIENT_ID : getenv('GH_CLIENT_ID');
-		$this->client_secret = ((GH_CLIENT_SECRET != NULL) && (GH_CLIENT_SECRET != '')) ? GH_CLIENT_SECRET : getenv('GH_CLIENT_SECRET');
+		$this->client_id = Utilities::env('GH_CLIENT_ID');
+		$this->client_secret = Utilities::env('GH_CLIENT_SECRET');
 	}
 
 	public function logout()
