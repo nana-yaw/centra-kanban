@@ -31,7 +31,7 @@ class GithubOAuth implements IOAuth {
     public function authorize()
     {
         $url = 'Location: '.$this->baseUrl.'authorize';
-		$url .= '?client_id=' . $this->client_id;
+		$url .= '?client_id=' . $this->_client_id;
 		$url .= '&scope=repo';
 		$url .= '&state='.$this->setState().'';
 		header($url);
@@ -44,8 +44,8 @@ class GithubOAuth implements IOAuth {
 		$data = array(
 			'code' => $code,
 			'state' => ''.$this->getState().'',
-			'client_id' => $this->client_id,
-			'client_secret' => $this->client_secret);
+			'client_id' => $this->_client_id,
+			'client_secret' => $this->_client_secret);
 		$options = array(
 			'http' => array(
 				'method' => 'POST',
