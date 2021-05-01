@@ -2,6 +2,7 @@
 
 use KanbanBoard\Utilities;
 use KanbanBoard\DotEnv;
+use KanbanBoard\GithubOAuth;
 
 require '../classes/KanbanBoard/GithubClient.php';
 require '../classes/Utilities.php';
@@ -20,11 +21,13 @@ try {
 
 	}
 
+	$client_id = Utilities::env('GH_CLIENT_ID');
+	$client_secret = Utilities::env('GH_CLIENT_SECRET');
 	$reposource = Utilities::env('GH_REPOSITORIES');
 	$repoacc = Utilities::env('GH_ACCOUNT');
 
 	$repositories = explode('|', $reposource);
-	$authentication = new \KanbanBoard\Authentication();
+	$authentication = new \KanbanBoard\Authentication(new GithubOAuth($client_id, $client_secret));
 	$token = $authentication->login();
 	$githubClient = new GithubClient($token, $repoacc);
 	$application = new \KanbanBoard\Application($githubClient, $repositories, array('waiting-for-feedback'));
