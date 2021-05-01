@@ -49,7 +49,7 @@ try {
 
 } catch (\Github\Exception\RuntimeException $e) {
 
-	echo 'One of the repo returns empty! Please check the spelling of the value of GH_REPOSITORIES.';
+	throw 'One of the repo returns empty! Please check the spelling of the value of GH_REPOSITORIES.';
 
 }
 

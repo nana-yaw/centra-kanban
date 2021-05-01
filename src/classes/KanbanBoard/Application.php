@@ -10,6 +10,10 @@ use \Michelf\Markdown;
 
 class Application {
 
+	private $github;
+	private $repositories;
+	private $paused_labels;
+
 	public function __construct($github, $repositories, $paused_labels = array())
 	{
 		$this->github = $github;
@@ -51,22 +55,23 @@ class Application {
 
 	private function issues($repository, $milestone_id)
 	{
-		$i = $this->github->issues($repository, $milestone_id);
-		foreach ($i as $ii)
+		$repoIssues = $this->github->issues($repository, $milestone_id);
+		$issues = array();
+		foreach ($repoIssues as $issue)
 		{
-			if (isset($ii['pull_request']))
+			if (isset($issue['pull_request']))
 				continue;
-			$issues[$ii['state'] === 'closed' ? 'completed' : (($ii['assignee']) ? 'active' : 'queued')][] = array(
-				'id' => $ii['id'], 'number' => $ii['number'],
-				'title'            	=> $ii['title'],
-				'body'             	=> Markdown::defaultTransform($ii['body']),
-     'url' => $ii['html_url'],
-				'assignee'         	=> (is_array($ii) && array_key_exists('assignee', $ii) && !empty($ii['assignee'])) ? $ii['assignee']['avatar_url'].'?s=16' : NULL,
-				'paused'			=> self::labels_match($ii, $this->paused_labels),
+			$issues[$this->_state($issue)][] = array(
+				'id' => $issue['id'], 'number' => $issue['number'],
+				'title'            	=> $issue['title'],
+				'body'             	=> Markdown::defaultTransform($issue['body']),
+     'url' => $issue['html_url'],
+				'assignee'         	=> (is_array($issue) && array_key_exists('assignee', $issue) && !empty($issue['assignee'])) ? $issue['assignee']['avatar_url'].'?s=16' : NULL,
+				'paused'			=> self::labels_match($issue, $this->paused_labels),
 				'progress'			=> self::_percent(
-											substr_count(strtolower($ii['body']), '[x]'),
-											substr_count(strtolower($ii['body']), '[ ]')),
-				'closed'			=> $ii['closed_at']
+											substr_count(strtolower($issue['body']), '[x]'),
+											substr_count(strtolower($issue['body']), '[ ]')),
+				'closed'			=> $issue['closed_at']
 			);
 		}
 
@@ -104,6 +109,7 @@ class Application {
 	private static function _percent($complete, $remaining)
 	{
 		$total = $complete + $remaining;
+		
 		if($total > 0)
 		{
 			$percent = ($complete OR $remaining) ? round($complete / $total * 100) : 0;
