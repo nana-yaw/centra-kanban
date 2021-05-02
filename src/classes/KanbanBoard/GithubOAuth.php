@@ -3,7 +3,7 @@ namespace KanbanBoard;
 
 class GithubOAuth implements IOAuth {
 
-    protected $baseUrl="https://github.com/login/oauth/";
+    private $baseUrl="https://github.com/login/oauth/";
 
     private $_client_id = NULL;
 	private $_client_secret = NULL;
@@ -19,6 +19,10 @@ class GithubOAuth implements IOAuth {
     private function setState():string {
 		$this->_state = substr(md5(microtime()), 0, 18);
 		return $this->_state;
+	}
+
+	public function getBaseUrl():string {
+		return $this->baseUrl;
 	}
 
 	private function getState():string {
