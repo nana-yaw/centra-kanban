@@ -16,7 +16,7 @@ Below is the definition for your environment variable...
 * `GH_ACCOUNT` is your current GitHub username.
 * `GH_REPOSITORIES` are names of your GitHub repos separated by a `|` character.
 
-From your favorite cli, `cd` into the root of this project and run this command `php -S localhost:8000 -tsrc/public`.
+From your favorite cli, `cd` into the root of this project and run `composer update` and after `composer` is done adding dependencies, run this command `php -S localhost:8000 -tsrc/public`.
 In your browser visit this url [localhost:8000](http://localhost:8000).
 
 
