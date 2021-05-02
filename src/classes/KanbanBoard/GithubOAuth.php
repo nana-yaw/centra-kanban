@@ -16,19 +16,19 @@ class GithubOAuth implements IOAuth {
 
     }
 
-    private function setState(){
+    private function setState():string {
 		$this->_state = substr(md5(microtime()), 0, 18);
 		return $this->_state;
 	}
 
-	private function getState(){
+	private function getState():string {
 		if ($this->_state == NULL) {
 			$this->setState();
 		}
 		return $this->_state;
 	}
 
-    public function authorize()
+    public function authorize(): void
     {
         $url = 'Location: '.$this->baseUrl.'authorize';
 		$url .= '?client_id=' . $this->_client_id;
